@@ -1,0 +1,31 @@
+@page "/"
+
+<PageTitle>Index</PageTitle>
+
+
+
+<Textarea InputType="InputType.TextArea"
+          rows="20"
+          @oninput="@(e => OnChange(e))"/>
+
+
+          <br/>
+UTF-8: @Count <br/>
+EUC-KR: @CountKR 
+
+@code
+{
+    static System.Text.Encoding EucKrEncoding = System.Text.Encoding.GetEncoding("euc-kr");
+
+    int CountKR { get; set; }
+    int Count { get; set; }
+
+    void OnChange(ChangeEventArgs e)
+    {
+        if (e.Value is string m)
+        {
+            Count = System.Text.Encoding.UTF8.GetByteCount(m);
+            CountKR = EucKrEncoding.GetByteCount(m);
+        }
+    }
+}
