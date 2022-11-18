@@ -1,20 +1,32 @@
-@page "/"
+@page "/{text?}"
 
 <PageTitle>Index</PageTitle>
 
 
 
 <Textarea InputType="InputType.TextArea"
-          rows="20"
+          rows="10"
+          @bind-Value="@Text"
           @oninput="@(e => OnChange(e))"/>
 
 
-          <br/>
+<br />
 UTF-8: @Count <br/>
 EUC-KR: @CountKR 
 
 @code
 {
+    [Parameter]
+    public string? Text { get; set; }
+
+    protected override void OnInitialized()
+    {
+        OnChange(new ChangeEventArgs
+        {
+            Value = Text
+        });
+    }
+
     static System.Text.Encoding EucKrEncoding = System.Text.Encoding.GetEncoding("euc-kr");
 
     int CountKR { get; set; }
