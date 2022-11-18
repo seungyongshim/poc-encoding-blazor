@@ -1,1 +1,4 @@
-![CI](../../workflows/CI/badge.svg) ![Cov](../gh-pages/docs/badge_linecoverage.svg)
+![CI](../../workflows/CI/badge.svg) 
+
+## Blazor Wasm 글자 수 세기
+* euc-kr !!
