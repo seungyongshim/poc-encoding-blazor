@@ -9,16 +9,22 @@
           @bind-Value="@Text"
           @oninput="@(e => OnChange(e))"/>
 
-
 <br />
 UTF-8: @Count <br/>
-EUC-KR: @CountKR 
+EUC-KR: @CountKR
+
+<Textarea InputType="InputType.TextArea"
+          disabled=true
+          rows="10"
+          @bind-Value="@Text1"/>
 
 @code
 {
     [Parameter]
     [SupplyParameterFromQuery]
     public string? Text { get; set; }
+
+    public string? Text1 { get; set; }
 
     protected override void OnInitialized()
     {
@@ -39,6 +45,11 @@ EUC-KR: @CountKR
         {
             Count = System.Text.Encoding.UTF8.GetByteCount(m);
             CountKR = EucKrEncoding.GetByteCount(m);
+            Text1 = EucKrEncoding.GetString(
+                System.Text.Encoding.Convert(
+                    System.Text.Encoding.UTF8,
+                    EucKrEncoding,
+                    System.Text.Encoding.UTF8.GetBytes(m)));
         }
     }
 }
