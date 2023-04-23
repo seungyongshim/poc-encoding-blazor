@@ -25,6 +25,7 @@ namespace BlazorApp2
         private StandaloneDiffEditorConstructionOptions DiffEditorConstructionOptions(StandaloneDiffEditor editor) => new StandaloneDiffEditorConstructionOptions
         {
             OriginalEditable = true
+            
         };
 
         private async Task EditorOnDidInit()
@@ -33,9 +34,7 @@ namespace BlazorApp2
             var original_model = await Global.GetModel("sample-diff-editor-originalModel");
             if (original_model == null)
             {
-                var original_value = """
-                    뚫둛뚝뚜땃
-                    """;
+                var original_value = "";
                 original_model = await Global.CreateModel(original_value, "javascript", "sample-diff-editor-originalModel");
             }
 
@@ -43,9 +42,7 @@ namespace BlazorApp2
             var modified_model = await Global.GetModel("sample-diff-editor-modifiedModel");
             if (modified_model == null)
             {
-                var modified_value = """
-                    뚫둛뚝뚜
-                    """;
+                var modified_value = "";
                 modified_model = await Global.CreateModel(modified_value, "javascript", "sample-diff-editor-modifiedModel");
             }
 
@@ -57,8 +54,31 @@ namespace BlazorApp2
             });
         }
 
-        private void EditorOnKeyUpOriginal(KeyboardEvent keyboardEvent)
+        static System.Text.Encoding EucKrEncoding = System.Text.Encoding.GetEncoding("euc-kr");
+
+        int CountKR { get; set; }
+        int Count { get; set; }
+
+
+
+
+        private async Task EditorOnKeyUpOriginal(KeyboardEvent keyboardEvent)
         {
+            var m = await _diffEditor.OriginalEditor.GetValue();
+
+
+            Count = System.Text.Encoding.UTF8.GetByteCount(m);
+            CountKR = EucKrEncoding.GetByteCount(m);
+            _valueToSetModified = EucKrEncoding.GetString(
+                System.Text.Encoding.Convert(
+                    System.Text.Encoding.UTF8,
+                    EucKrEncoding,
+                    System.Text.Encoding.UTF8.GetBytes(m)));
+
+
+
+            await _diffEditor.ModifiedEditor.SetValue(_valueToSetModified);
+
             Console.WriteLine("OnKeyUpOriginal : " + keyboardEvent.Code);
         }
 

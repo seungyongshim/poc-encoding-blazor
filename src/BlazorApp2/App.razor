@@ -1,28 +1,9 @@
-<h3>Diff Editor</h3>
+<h3>EUC-KR Checkor</h3>
 
-<div>
-    <div style="margin:10px 0;">
-        New Value: <input type="text" @bind="_valueToSetOriginal" style="width: 400px;" /> <button @onclick="SetValueOriginal">Set Value Original</button>
-    </div>
-    <div style="margin:10px 0;">
-        New Value: <input type="text" @bind="_valueToSetModified" style="width: 400px;" /> <button @onclick="SetValueModified">Set Value Modified</button>
-    </div>
-    <div style="margin:10px 0;">
-        <button @onclick="GetValueOriginal">Get Value Original</button>
-    </div>
-    <div style="margin:10px 0;">
-        <button @onclick="GetValueModified">Get Value Modified</button>
-    </div>
-    <div style="margin:10px 0;">
-        <button @onclick="AddCommand">Add Command Original (Ctrl+Enter)</button>
-    </div>
-    <div style="margin:10px 0;">
-        <button @onclick="AddAction">Add Action Modified (Ctrl+B)</button>
-    </div>
-    <div style="margin:10px 0;">
-        See the console for results.
-    </div>
-</div>
+UTF-8: @Count
+<br />
+EUC-KR: @CountKR
+<br />
 
 <StandaloneDiffEditor
     @ref="_diffEditor"
