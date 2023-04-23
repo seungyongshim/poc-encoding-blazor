@@ -28,6 +28,7 @@ namespace BlazorApp2
             Contextmenu = false,
             CodeLens = false,
             
+            
         };
 
         private async Task EditorOnDidInit()
