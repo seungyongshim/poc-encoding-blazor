@@ -3,20 +3,16 @@
 <PageTitle>Index</PageTitle>
 
 
-
-<Textarea InputType="InputType.TextArea"
-          rows="10"
-          @bind-Value="@Text"
-          @oninput="@(e => OnChange(e))"/>
+<StandaloneCodeEditor Id="my-editor-instance-id" oninput="(e => OnChange(e))" />
 
 <br />
 UTF-8: @Count <br/>
 EUC-KR: @CountKR
 
-<Textarea InputType="InputType.TextArea"
+<!--<Textarea InputType="InputType.TextArea"
           disabled=true
           rows="10"
-          @bind-Value="@Text1"/>
+          @bind-Value="@Text1"/>-->
 
 @code
 {

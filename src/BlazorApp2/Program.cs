@@ -1,9 +1,6 @@
-using System.Text;
-using BlazorApp1;
+using BlazorApp2;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-
-Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
