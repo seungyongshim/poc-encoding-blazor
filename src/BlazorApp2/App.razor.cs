@@ -27,7 +27,7 @@ namespace BlazorApp2
             OriginalEditable = true,
             Contextmenu = false,
             CodeLens = false,
-            
+            IgnoreTrimWhitespace = false,
             
         };
 
